@@ -1,0 +1,14 @@
+# Welcome to Parking Segmentation Documentation
+
+Welcome to the documentation of the Parking Segmentation project. This project aims to ...
+
+## Contents
+
+```{toctree}
+:maxdepth: 2
+:hidden:
+
+data.rst
+utils.rst
+models.rst
+evaluate.rst
