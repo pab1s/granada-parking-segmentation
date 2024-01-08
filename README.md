@@ -17,3 +17,12 @@ The documentation for this project is available at the docs folder. The document
 cd docs
 make html
 ```
+
+For reading the documentation, execute a python server in the `docs/build/html` folder and open the `index.html` file in a browser.
+
+```bash
+cd docs/build/html
+python -m http.server 8001
+```
+
+And from the browser, open http://localhost:8001
