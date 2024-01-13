@@ -1,2 +1,6 @@
-data/*
-results/models/*
+data/external
+data/interim
+data/processed
+data/raw
+data/final
+results/models/*.pkl
