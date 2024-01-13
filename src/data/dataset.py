@@ -1,6 +1,7 @@
 import numpy as np
-from fastai.vision.all import get_image_files, PILImage, PILMask, Path
+from fastai.vision.all import get_image_files, PILImage, PILMask
 from src.utils.transforms import normalize_mask
+from pathlib import Path
 import yaml
 
 def get_y_fn(x):
@@ -32,7 +33,7 @@ def get_items(path):
     Returns:
     - List[Pathlib.Path]: A list of paths to the image files.
     """
-    return get_image_files(path/'src')
+    return get_image_files(Path(path)/'src')
 
 def get_mask(item):
     """

@@ -13,7 +13,7 @@ model:
   activation: null
 
 training:
-  epochs: 100
+  epochs: 2
   loss_function:
     type: focal_loss
   metrics:
@@ -25,8 +25,9 @@ data:
   path_to_dataset: './data/processed/train'
   path_test_dataset: './data/processed/val'
   batch_size: 32
+  validation_split: 0.1
   augmentation:
-    resize: [256, 256]
+    resize: [8, 8]
     shadow_transform:
       num_shadows: 3
       min_opacity: 0.5
@@ -43,6 +44,11 @@ data:
       max_warp: 0.2
       p_affine: 0.75
       p_lighting: 0.75
+      mode: bilinear
+      pad_mode: reflection
+      align_corners: true
+      batch: false
+      min_scale: 1
   mapping_class_color:
     - color: [107, 142, 35]   # No se cual era
       class: 0 

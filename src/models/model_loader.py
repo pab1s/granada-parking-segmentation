@@ -43,15 +43,17 @@ def create_model(config, dls=None):
     """
     model_type = config['model']['type']
     backbone = config['model']['backbone']
-    pretrained = config['model']['pretrained'] == 'imagenet'
+    pretrained = config['model']['pretrained']
     num_classes = config['model']['classes']
 
     if model_type == 'pspnet':
         model = smp.PSPNet(encoder_name=backbone,
-                           encoder_weights=pretrained, classes=num_classes)
+                           encoder_weights=pretrained,
+                           classes=num_classes)
     elif model_type == 'deeplabv3_plus':
         model = smp.DeepLabV3Plus(
-            encoder_name=backbone, encoder_weights=pretrained, classes=num_classes)
+            encoder_name=backbone, encoder_weights=pretrained,
+            classes=num_classes)
     elif model_type == 'unet':
         if dls is None:
             raise ValueError("DataLoaders are required for fastai U-Net model")

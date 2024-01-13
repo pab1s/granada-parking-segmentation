@@ -133,7 +133,7 @@ def setup_augmentations(aug_config):
                                               p_lighting=aug_params['p_lighting'],
                                               xtra_tfms=aug_params['xtra_tfms'] if 'xtra_tfms' in aug_params else None,
                                               size=aug_params['size'] if 'size' in aug_params else None,
-                                              mode=aug_params['mode'],
+                                              mode=aug_params['mode'] if 'mode' in aug_params else None,
                                               pad_mode=aug_params['pad_mode'],
                                               align_corners=aug_params['align_corners'],
                                               batch=aug_params['batch'],
@@ -147,4 +147,4 @@ def setup_augmentations(aug_config):
 
 
 if __name__ == "__main__":
-    train_model('config.yaml', 'pspnet')
+    train_model('config.yml', 'pspnet')
