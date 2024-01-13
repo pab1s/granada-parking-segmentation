@@ -61,7 +61,7 @@ if __name__ == '__main__':
         'results/logs/deeplab_metrics.csv',
         'results/logs/unet_metrics.csv'
     ]
-    dataframe_names = ['PSPNet', 'DeepLab', 'Dynamic UNet']
+    dataframe_names = ['PSPNet', 'DeepLabV3+', 'Dynamic UNet']
     column_name = 'train_loss'
     output_path = 'results/figures/train_loss_comparison.png'
     n_rows = 50
