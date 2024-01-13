@@ -79,6 +79,10 @@ def train_model(config_path, model_type):
     # Save model
     model_save_path = Path(config['paths']['models']) / \
         f"{config['model']['type']}_model.pkl"
+    
+    if not model_save_path.parent.exists():
+        model_save_path.parent.mkdir(parents=True)
+        
     learner.export(fname=model_save_path)
     print(f"Model saved at {model_save_path}")
 
