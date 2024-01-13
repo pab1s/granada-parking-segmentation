@@ -1,14 +1,14 @@
 from fastai.vision.all import *
-from utils.metrics import save_metrics_to_csv
-from data.dataset import get_items, get_y_fn
-from models.model_loader import load_config, create_model
+from src.utils.metrics import save_metrics_to_csv
+from src.data.dataset import get_items, get_y_fn
+from src.models.model_loader import load_config, create_model
 from fastai.vision.augment import aug_transforms
 from fastai.data.transforms import Normalize
-from utils.transforms import ShadowTransform
+from src.utils.transforms import ShadowTransform
 from torchvision.transforms import Resize
 
 
-def train_model(config_path):
+def train_model(config_path, model_type):
     """
     Conduct the training process for a deep learning model.
 
@@ -18,6 +18,7 @@ def train_model(config_path):
     Parameters:
     - config_path (str): Path to the configuration file (config.yaml), which contains settings for data,
                          model, training, and paths for saving outputs.
+    - model_type (str): Type of the model to train ('pspnet', 'deeplabv3_plus', 'unet').
 
     Steps:
     1. Load configuration from the given path.
@@ -30,9 +31,19 @@ def train_model(config_path):
     """
     # Load Configuration
     config = load_config(config_path)
+    print("Configuration loaded successfully.")
+
+    # Validate model type
+    if model_type not in config['model']['type']:
+        raise ValueError(f"Model type '{model_type}' is not supported. Choose from {config['model']['type']}")
+    print(f"Selected model type: {model_type}")
+
+    # Update model type in the configuration
+    config['model']['type'] = model_type
 
     # Data Augmentation Setup
     batch_tfms = setup_augmentations(config['data']['augmentation'])
+    print("Data augmentation setup completed.")
 
     # Data Preparation
     data = DataBlock(
@@ -48,27 +59,35 @@ def train_model(config_path):
 
     dls = data.dataloaders(
         config['data']['path_to_dataset'], bs=config['data']['batch_size'])
+    print("Data preparation completed.")
 
     # Model Initialization
     model = create_model(config, dls)
+    print(f"Model '{config['model']['type']}' initialized.")
 
     # Create Learner
     learner = Learner(dls, model, loss_func=FocalLoss(), metrics=[
-                      foreground_acc, DiceMulti(), JaccardCoeffMulti()])
-
+                      foreground_acc, DiceMulti(), JaccardCoeffMulti()], 
+                      cbs=[ShowGraphCallback()])
+    print("Learner created, starting training process.")
+    
     # Training
+    print("Starting training...")
     learner.fit_one_cycle(config['training']['epochs'])
+    print("Training completed.")
 
     # Save model
     model_save_path = Path(config['paths']['models']) / \
         f"{config['model']['type']}_model.pkl"
     learner.export(fname=model_save_path)
+    print(f"Model saved at {model_save_path}")
 
     # Save metrics
     metrics_save_path = Path(
         config['paths']['metrics']) / f"{config['model']['type']}_metrics.csv"
     save_metrics_to_csv(learner, file_path=metrics_save_path)
-    print("Training completed and model saved.")
+    print(f"Metrics saved at {metrics_save_path}")
+    print("Training process completed and outputs saved.")
 
 
 def setup_augmentations(aug_config):
@@ -128,4 +147,4 @@ def setup_augmentations(aug_config):
 
 
 if __name__ == "__main__":
-    train_model('config.yaml')
+    train_model('config.yaml', 'pspnet')

@@ -45,7 +45,7 @@ def plot_metrics(self: Recorder, nrows=None, ncols=None, figsize=None, **kwargs)
         ax.legend(loc='best')
     plt.show()
 
-def save_metrics_to_csv(learner, file_path='pspnet_metrics.csv', **kwargs):
+def save_metrics_to_csv(learner, file_path='file_metrics.csv', **kwargs):
     """
     Save the training metrics from a fastai Learner to a CSV file.
 

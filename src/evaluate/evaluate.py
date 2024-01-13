@@ -1,6 +1,6 @@
 from fastai.vision.all import *
-from data.dataset import get_items, get_y_fn
-from models.model_loader import load_config
+from src.data.dataset import get_items, get_y_fn
+from src.models.model_loader import load_config
 from pathlib import Path
 import matplotlib.pyplot as plt
 
@@ -95,5 +95,5 @@ def show_results(test_dl, preds, targs, config, num_samples=5):
     print(f"Displayed {num_samples} samples.")
 
 if __name__ == "__main__":
-    evaluate_model('./config.yaml', 'path/to/model.pkl')
+    evaluate_model('config.yaml', 'results/models/pspnet.pkl')
 

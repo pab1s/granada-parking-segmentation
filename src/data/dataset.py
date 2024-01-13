@@ -1,6 +1,6 @@
 import numpy as np
 from fastai.vision.all import get_image_files, PILImage, PILMask, Path
-from utils.transforms import normalize_mask
+from src.utils.transforms import normalize_mask
 import yaml
 
 def get_y_fn(x):
