@@ -4,3 +4,4 @@ data/processed
 data/raw
 data/final
 results/models/*.pkl
+.DS_Store
