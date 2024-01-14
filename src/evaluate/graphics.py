@@ -41,7 +41,7 @@ def plot_dfs(csv_paths, dataframe_names, column_name, output_path, n_rows=None, 
             sns.lineplot(data=df, x=df.index, y=column_name, label=name, linewidth=line_width)
 
         # Customize the plot with bold axis titles
-        plt.title(f'Comparison of {column_name}', fontweight='bold')
+        # plt.title(f'Comparison of {column_name}', fontweight='bold')
         plt.xlabel('Index', fontweight='bold')
         plt.ylabel(column_name, fontweight='bold')
 
@@ -62,9 +62,9 @@ if __name__ == '__main__':
         'results/logs/unet_metrics.csv'
     ]
     dataframe_names = ['PSPNet', 'DeepLabV3+', 'Dynamic UNet']
-    column_name = 'train_loss'
-    output_path = 'results/figures/train_loss_comparison.png'
+    column_name = 'jaccard_coeff_multi'
+    output_path = 'results/figures/jaccard_coeff_multi_comparison.png'
     n_rows = 50
-    style = "darkgrid"
+    style = ["whitegrid", "darkgrid"]
 
-    plot_dfs(csv_paths, dataframe_names, column_name, output_path, n_rows, style)
+    plot_dfs(csv_paths, dataframe_names, column_name, output_path, n_rows, style[1])
