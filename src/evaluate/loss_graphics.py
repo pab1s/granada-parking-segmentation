@@ -3,11 +3,10 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 csv_paths = [
-    'results/logs/pspnet_metrics.csv',
-    'results/logs/deeplab_metrics.csv',
-    'results/logs/unet_metrics.csv'
+    'results/logs/unparked_deeplab_granada.csv',
+    'results/logs/parked_deeplab_granada.csv',
 ]
-model_names = ['PSPNet', 'DeepLabV3+', 'Dynamic UNet']
+model_names = ['Unparked Cars Model', 'Parked Cars Model']
 
 sns.set_style("darkgrid")
 colors = ['b', 'g', 'r'] 
@@ -26,7 +25,7 @@ plt.ylabel('Loss')
 # plt.title('Training and Validation Loss Over Epochs for Different Models')
 plt.legend()
 
-plt.ylim(0, 0.5)
+#plt.ylim(0, 0.5)
 
-plt.savefig('train_valid_loss_plot.png')
+plt.savefig('parked_unparked_plot.png')
 plt.show()
