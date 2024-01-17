@@ -54,10 +54,7 @@ def denormalize_mask(mask_class, mapeo):
 
 def add_shadow(image, num_shadows, min_opacity, max_opacity):
     """
-    Add random shadow effects to an image.
-
-    This function generates a specified number of shadow polygons with random shapes, sizes,
-    and opacities, and then blends them onto the original image.
+    Add random shadow effects to an image with corrected blending for each shadow.
 
     Parameters:
     - image (numpy.ndarray): The original image to which shadows will be added.
@@ -69,9 +66,11 @@ def add_shadow(image, num_shadows, min_opacity, max_opacity):
     - numpy.ndarray: The image with added shadow effects.
     """
     height, width = image.shape[:2]
-    shadow_image = image.copy()
 
     for _ in range(num_shadows):
+        # Create a temporary image for each shadow
+        temp_image = image.copy()
+
         # Randomly generate the shadow polygon
         x1, y1 = random.randint(0, width), random.randint(0, height)
         x2, y2 = random.randint(0, width), random.randint(0, height)
@@ -80,13 +79,11 @@ def add_shadow(image, num_shadows, min_opacity, max_opacity):
 
         # Create a black polygon to simulate the shadow
         poly = np.array([[x1, y1], [x2, y2], [x3, y3], [x4, y4]], np.int32)
-        cv2.fillPoly(shadow_image, [poly], (0, 0, 0))
+        cv2.fillPoly(temp_image, [poly], (0, 0, 0))
 
         # Blending the shadow with the image
         alpha = random.uniform(min_opacity, max_opacity)
-        mask = shadow_image.astype(bool)
-        shadow_image = cv2.addWeighted(shadow_image, alpha, image, 1 - alpha, 0, image)
-        image[mask] = shadow_image[mask]
+        image = cv2.addWeighted(temp_image, alpha, image, 1 - alpha, 0)
 
     return image
 
@@ -102,10 +99,23 @@ class ShadowTransform(Transform):
     - min_opacity (float): The minimum opacity of the shadows (0 to 1).
     - max_opacity (float): The maximum opacity of the shadows (0 to 1).
     """
-    def __init__(self, num_shadows=3, min_opacity=0.5, max_opacity=0.75):
+    def __init__(self, num_shadows=3, min_opacity=0.25, max_opacity=0.5):
         self.num_shadows = num_shadows
         self.min_opacity = min_opacity
         self.max_opacity = max_opacity
 
     def encodes(self, x: PILImage):
         return add_shadow(x, self.num_shadows, self.min_opacity, self.max_opacity)
+
+if __name__ == "__main__":
+    img_path = "data/external/UDD/UDD5/train/src/DJI_0300.JPG"
+
+    # Read the image
+    img = cv2.imread(img_path)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    # Add shadows
+    img_shadow = add_shadow(img, 3, 0.35, 0.5)
+
+    # save the image
+    cv2.imwrite("shadow.jpg", img_shadow)
