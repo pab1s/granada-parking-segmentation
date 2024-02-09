@@ -4,11 +4,11 @@ The Parking Space Detection Project is a comprehensive exploration into applying
 
 ## Features
 
-- Models Used: Incorporates advanced segmentation models including PSPNet, DeepLabV3+ and Dynamic U-Net.
-- Datasets: Utilizes diverse datasets like UDD5, UAVid and a specially curated Granada dataset, GranadaAerial, to train and validate the models.
-- Custom Data Augmentation: Employs different data augmentation strategies to enhance model performance under varied urban scenarios.
-- Transfer Learning: Applies transfer learning to adapt pre-trained models to specific characteristics of urban Granada.
-- Model Evaluation: Detailed performance analysis of each model, showcasing DeepLabV3+ as the most effective for this application.
+- **Models Used**: Incorporates advanced segmentation models including PSPNet, DeepLabV3+ and Dynamic U-Net.
+- **Datasets**: Utilizes diverse datasets like UDD5, UAVid and a specially curated Granada dataset, GranadaAerial, to train and validate the models.
+- **Custom Data Augmentation**: Employs different data augmentation strategies to enhance model performance under varied urban scenarios.
+- **Transfer Learning**: Applies transfer learning to adapt pre-trained models to specific characteristics of urban Granada.
+- **Model Evaluation**: Detailed performance analysis of each model, showcasing DeepLabV3+ as the most effective for this application.
 
 ### Training
 
