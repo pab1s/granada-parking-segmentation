@@ -1,13 +1,14 @@
-# Parking Segmentation
+# Parking Space Detection in the city of Granada
 
-Parking Segmentation is a Python project aimed at utilizing advanced machine learning techniques for efficient and accurate segmentation of parking spaces in various environments. This project implements several state-of-the-art models to achieve its objectives.
+The Parking Space Detection Project is a comprehensive exploration into applying deep learning models for the semantic segmentation of parking spaces in urban environments. Developed with a focus on Granada, Spain, this initiative leverages cutting-edge AI techniques to analyze aerial and street-level imagery for efficient parking space management, aiming to contribute valuable insights into urban planning and traffic control.
 
 ## Features
 
-- Implementations of PSPNet, DeepLabV3+, and Dynamic U-Net models.
-- Custom data augmentation techniques for robust training.
-- Efficient handling of large-scale image datasets.
-- Evaluation tools for model performance analysis.
+- Models Used: Incorporates advanced segmentation models including PSPNet, DeepLabV3+ and Dynamic U-Net.
+- Datasets: Utilizes diverse datasets like UDD5, UAVid and a specially curated Granada dataset, GranadaAerial, to train and validate the models.
+- Custom Data Augmentation: Employs different data augmentation strategies to enhance model performance under varied urban scenarios.
+- Transfer Learning: Applies transfer learning to adapt pre-trained models to specific characteristics of urban Granada.
+- Model Evaluation: Detailed performance analysis of each model, showcasing DeepLabV3+ as the most effective for this application.
 
 ### Training
 
@@ -34,3 +35,10 @@ python -m http.server 8001
 ```
 
 And from the browser, open http://localhost:8001
+
+Authors
+
+-  Luis Crespo Orti
+-  Isabel María Moreno Cuadrado
+-  Pablo Olivares Martínez
+-  Ximo Sanz Tornero
