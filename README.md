@@ -42,3 +42,17 @@ And from the browser, open http://localhost:8001
 -  Isabel María Moreno Cuadrado
 -  Pablo Olivares Martínez
 -  Ximo Sanz Tornero
+
+## Citation
+
+If you use this project in your research, please cite it using the following BibTeX entry:
+
+```bibtex
+@unpublished{CMOS2023parkingspacedetection,
+  author  = "Crespo Orti, Luis and Moreno Cuadrado, Isabel María and Olivares Martínez, Pablo and Sanz Tornero, Ximo",
+  title   = "Parking Space Detection in the City of Granada",
+  note    = "Available at GitHub: \url{https://github.com/pab1s/granada-parking-segmentation}",
+  month   = "jan",
+  year    = "2023",
+}
+```
