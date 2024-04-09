@@ -2,6 +2,8 @@
 
 The Parking Space Detection Project is a comprehensive exploration into applying deep learning models for the semantic segmentation of parking spaces in urban environments. Developed with a focus on Granada, Spain, this initiative leverages cutting-edge AI techniques to analyze aerial and street-level imagery for efficient parking space management, aiming to contribute valuable insights into urban planning and traffic control.
 
+![Granada Aerial Image](./results/images/test2.jpg)
+
 ## Features
 
 - **Models Used**: Incorporates advanced segmentation models including PSPNet, DeepLabV3+ and Dynamic U-Net.
